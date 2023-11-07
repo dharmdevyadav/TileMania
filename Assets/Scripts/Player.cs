@@ -7,10 +7,13 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float moveSpeed =7f;
     [SerializeField] private float jumpSpeed = 15.5f;
+    [SerializeField] private LayerMask JumpableGround;
+    [SerializeField] AudioSource JumpSoundEffect;
 
     private float dirX;
     Rigidbody2D rb;
-    public bool isJumping;
+    CapsuleCollider2D cap;
+    //public bool isJumping;
     private Animator anim;
     private SpriteRenderer sp;
 
@@ -18,6 +21,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        cap = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
     }
@@ -30,7 +34,7 @@ public class Player : MonoBehaviour
         jumpAndIdle();
 
     }
-    void OnCollisionEnter2D(Collision2D other)
+    /*void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
@@ -43,12 +47,13 @@ public class Player : MonoBehaviour
         {
             isJumping = true;
         }
-    }
+    }*/
 
     private void jumpingUpdate()
     {
-        if (Input.GetButtonDown("Jump") && isJumping == false)
+        if (Input.GetButtonDown("Jump") && isGrounded())
         {
+            JumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
 
         }
@@ -81,6 +86,11 @@ public class Player : MonoBehaviour
         }
         anim.SetInteger("state", (int)state);
 
+    }
+
+    private bool isGrounded()
+    {
+        return Physics2D.BoxCast(cap.bounds.center, cap.bounds.size, 0f, Vector2.down,.1f, JumpableGround);
     }
 }
 
