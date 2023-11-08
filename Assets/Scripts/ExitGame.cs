@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class ExitGame : MonoBehaviour
 {
-    private void Start()
+    /*private void Start()
     {
         Invoke("EndGame", 2f);
         Invoke("RestartGame", 3f);
-    }
+    }*/
     public void EndGame()
     {
         SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
