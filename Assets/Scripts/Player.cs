@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     private float dirX;
     Rigidbody2D rb;
     CapsuleCollider2D cap;
-    //public bool isJumping;
     private Animator anim;
     private SpriteRenderer sp;
 
@@ -34,21 +33,7 @@ public class Player : MonoBehaviour
         jumpAndIdle();
 
     }
-    /*void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isJumping = false;
-        }
-    }
-    void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isJumping = true;
-        }
-    }*/
-
+    
     private void jumpingUpdate()
     {
         if (Input.GetButtonDown("Jump") && isGrounded())

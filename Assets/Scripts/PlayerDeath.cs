@@ -25,6 +25,6 @@ public class PlayerDeath : MonoBehaviour
 
     private void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("EndScene",LoadSceneMode.Single);
     }
 }
