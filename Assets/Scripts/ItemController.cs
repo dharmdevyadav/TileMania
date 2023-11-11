@@ -2,21 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ItemController : MonoBehaviour
 {
-    private int Cherries = 0;
-    [SerializeField]private TextMeshProUGUI countText;
+    [SerializeField] int PerCherryPoint = 1;
+    
     [SerializeField] AudioSource CollectorEffect;
     
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Cherry")
         {
+            FindObjectOfType<GameController>().AddToPoint(PerCherryPoint);
             CollectorEffect.Play();
             Destroy(other.gameObject);
-            Cherries++;
-            countText.text ="Cherries: " + Cherries;
+            
+            
         }
     }
 }

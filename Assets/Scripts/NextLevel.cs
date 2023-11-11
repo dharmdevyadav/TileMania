@@ -28,6 +28,7 @@ public class NextLevel : MonoBehaviour
     }
     private void LoadNextLevel()
     {
+        FindObjectOfType<ScenePersist>().ResetScenePersist();
         SceneManager.LoadScene("Level2", LoadSceneMode.Single);
     }
 

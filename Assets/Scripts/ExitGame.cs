@@ -12,6 +12,7 @@ public class ExitGame : MonoBehaviour
     }*/
     public void EndGame()
     {
+        //Application.Quit();
         SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
     }
 

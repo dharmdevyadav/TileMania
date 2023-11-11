@@ -17,8 +17,11 @@ public class PlayerDeath : MonoBehaviour
     {
         if (other.tag == "spikes")
         {
+            
             DeathEffect.Play();
             animator.SetTrigger("death");
+            //FindObjectOfType<ScenePersist>().ResetScenePersist();
+            FindObjectOfType<GameController>().ProcessPlayerDeath();
             rb.bodyType = RigidbodyType2D.Static;
         }
     }
